@@ -1,18 +1,18 @@
 package com.football.betting.api.ui.model.response;
 
-import java.util.Date;
-
 public class BetRest {
-    private double resultBetOn;
+    private String resultBetOn;
     private double stake;
-    private double odds;
+    private double oddsWhenBetPlaced;
+    private HomeDrawAwayRest odds;
+    private String oddsFrom;
     private GameRest game;
 
-    public double getResultBetOn() {
+    public String getResultBetOn() {
         return resultBetOn;
     }
 
-    public void setResultBetOn(double resultBetOn) {
+    public void setResultBetOn(String resultBetOn) {
         this.resultBetOn = resultBetOn;
     }
 
@@ -24,12 +24,28 @@ public class BetRest {
         this.stake = stake;
     }
 
-    public double getOdds() {
+    public double getOddsWhenBetPlaced() {
+        return oddsWhenBetPlaced;
+    }
+
+    public void setOddsWhenBetPlaced(double oddsWhenBetPlaced) {
+        this.oddsWhenBetPlaced = oddsWhenBetPlaced;
+    }
+
+    public HomeDrawAwayRest getOdds() {
         return odds;
     }
 
-    public void setOdds(double odds) {
+    public void setOdds(HomeDrawAwayRest odds) {
         this.odds = odds;
+    }
+
+    public String getOddsFrom() {
+        return oddsFrom;
+    }
+
+    public void setOddsFrom(String oddsFrom) {
+        this.oddsFrom = oddsFrom;
     }
 
     public GameRest getGame() {

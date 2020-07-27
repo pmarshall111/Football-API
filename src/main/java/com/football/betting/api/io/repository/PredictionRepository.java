@@ -29,6 +29,6 @@ public interface PredictionRepository extends CrudRepository<PredictionEntity, I
             " INNER JOIN " + MatchTable.TABLE_NAME + " ON " + PredictionTable.COL_MATCH_ID + " = " + MatchTable.TABLE_NAME + "._id" +
             " INNER JOIN " + TeamTable.TABLE_NAME + " AS homeTeam ON " + MatchTable.COL_HOMETEAM_ID + " = homeTeam._id" +
             " INNER JOIN " + TeamTable.TABLE_NAME + " AS awayTeam ON " + MatchTable.COL_AWAYTEAM_ID + " = awayTeam._id" +
-            " WHERE " + MatchTable.TABLE_NAME + "." + MatchTable.COL_DATE + " > ':date'", nativeQuery = true)
+            " WHERE " + MatchTable.TABLE_NAME + "." + MatchTable.COL_DATE + " > :date", nativeQuery = true)
     List<Object[]> findAllFuture(@Param("date") String earliestDate);
 }

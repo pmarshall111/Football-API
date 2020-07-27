@@ -4,6 +4,7 @@ import com.football.betting.api.io.entity.BetEntity;
 import com.football.betting.api.io.repository.BetRepository;
 import com.football.betting.api.service.BetService;
 import com.football.betting.api.shared.dto.BetDto;
+import com.football.betting.api.shared.dto.GameDto;
 import com.petermarshall.shared.DateHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,23 +21,42 @@ public class BetServiceImpl implements BetService {
 
     @Override
     public List<BetDto> getHistoricBets() {
-        List<BetEntity> historicBets = betRepository.findAllHistoric(DateHelper.getSqlDate(DateHelper.subtractXminsFromDate(new Date(), 130)));
-        ArrayList<BetDto> toReturn = new ArrayList<>();
-        for (BetEntity bEnt: historicBets) {
-            BetDto bDto = new BetDto();
-            BeanUtils.copyProperties(bEnt, bDto);
-            toReturn.add(bDto);
-        }
-        return toReturn;
+        List<Object[]> historicBets = betRepository.findAllHistoric(DateHelper.getSqlDate(DateHelper.subtractXminsFromDate(new Date(), 130)));
+        return convertBetObjsToList(historicBets);
     }
 
     @Override
     public List<BetDto> getFutureBets() {
-        List<BetEntity> futureBets = betRepository.findAllFuture(DateHelper.getSqlDate(new Date()));
+        List<Object[]> futureBets = betRepository.findAllFuture(DateHelper.getSqlDate(new Date()));
+        return convertBetObjsToList(futureBets);
+    }
+
+    private ArrayList<BetDto> convertBetObjsToList(List<Object[]> betObjList) {
         ArrayList<BetDto> toReturn = new ArrayList<>();
-        for (BetEntity bEnt: futureBets) {
+        for (Object[] betObj: betObjList) {
             BetDto bDto = new BetDto();
-            BeanUtils.copyProperties(bEnt, bDto);
+            double resultBetOn = (int) betObj[0];
+            String resultBetOnString = "null";
+            if (resultBetOn == 0) {
+                resultBetOnString = "home";
+            } else if (resultBetOn == 1) {
+                resultBetOnString = "draw";
+            } else if (resultBetOn == 2) {
+                resultBetOnString = "away";
+            }
+            bDto.setResultBetOn(resultBetOnString);
+            bDto.setOddsWhenBetPlaced((double) betObj[1]);
+            bDto.setStake((double) betObj[2]);
+            bDto.setHomeOdds((double) betObj[3]);
+            bDto.setDrawOdds((double) betObj[4]);
+            bDto.setAwayOdds((double) betObj[5]);
+            bDto.setOddsFrom("Bet 365"); //odds stored in Match db are always from Bet365.
+            GameDto gameDto = new GameDto();
+            gameDto.setKickOff(DateHelper.createDateFromSQL((String) betObj[6]));
+            gameDto.setHomeTeam((String) betObj[7]);
+            gameDto.setAwayTeam((String) betObj[8]);
+            bDto.setGame(gameDto);
+
             toReturn.add(bDto);
         }
         return toReturn;

@@ -3,6 +3,8 @@ package com.football.betting.api.ui.controller;
 import com.football.betting.api.service.impl.BetServiceImpl;
 import com.football.betting.api.shared.dto.BetDto;
 import com.football.betting.api.ui.model.response.BetRest;
+import com.football.betting.api.ui.model.response.GameRest;
+import com.football.betting.api.ui.model.response.HomeDrawAwayRest;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +28,10 @@ public class BetController {
         for (BetDto bDto: betsDto) {
             BetRest bRest = new BetRest();
             BeanUtils.copyProperties(bDto, bRest);
+            GameRest gRest = new GameRest();
+            BeanUtils.copyProperties(bDto.getGame(), gRest);
+            bRest.setGame(gRest);
+            bRest.setOdds(new HomeDrawAwayRest(bDto.getHomeOdds(), bDto.getDrawOdds(), bDto.getAwayOdds()));
             returnObj.add(bRest);
         }
         return returnObj;
@@ -38,6 +44,10 @@ public class BetController {
         for (BetDto bDto: betsDto) {
             BetRest bRest = new BetRest();
             BeanUtils.copyProperties(bDto, bRest);
+            GameRest gRest = new GameRest();
+            BeanUtils.copyProperties(bDto.getGame(), gRest);
+            bRest.setGame(gRest);
+            bRest.setOdds(new HomeDrawAwayRest(bDto.getHomeOdds(), bDto.getDrawOdds(), bDto.getAwayOdds()));
             returnObj.add(bRest);
         }
         return returnObj;
