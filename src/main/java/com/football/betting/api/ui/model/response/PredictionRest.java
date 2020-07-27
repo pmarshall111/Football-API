@@ -1,10 +1,10 @@
 package com.football.betting.api.ui.model.response;
 
 public class PredictionRest {
-    private boolean withLineups;
+    private boolean predictionUsesLineups;
     private HomeDrawAwayRest predictions;
     private HomeDrawAwayRest odds;
-    private String oddsFromBookie;
+    private String oddsFrom;
     private GameRest game;
 
     public GameRest getGame() {
@@ -15,12 +15,12 @@ public class PredictionRest {
         this.game = game;
     }
 
-    public boolean isWithLineups() {
-        return withLineups;
+    public boolean isPredictionUsesLineups() {
+        return predictionUsesLineups;
     }
 
-    public void setWithLineups(boolean withLineups) {
-        this.withLineups = withLineups;
+    public void setPredictionUsesLineups(boolean predictionUsesLineups) {
+        this.predictionUsesLineups = predictionUsesLineups;
     }
 
     public HomeDrawAwayRest getPredictions() {
@@ -39,11 +39,11 @@ public class PredictionRest {
         this.odds = odds;
     }
 
-    public String getOddsFromBookie() {
-        return oddsFromBookie;
+    public String getOddsFrom() {
+        return oddsFrom;
     }
 
-    public void setOddsFromBookie(String oddsFromBookie) {
-        this.oddsFromBookie = oddsFromBookie;
+    public void setOddsFrom(String oddsFrom) {
+        this.oddsFrom = oddsFrom;
     }
 }

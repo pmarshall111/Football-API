@@ -9,7 +9,7 @@ public class BetEntity implements Serializable {
     private static final long serialVersionUID = 29671229032852283L;
 
     @Id
-    private long id;
+    private int _id;
 
     @Column
     private double stake;
@@ -20,12 +20,12 @@ public class BetEntity implements Serializable {
     @ManyToOne
     private GameEntity game;
 
-    public long getId() {
-        return id;
+    public int getId() {
+        return _id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId(int id) {
+        this._id = id;
     }
 
     public double getStake() {

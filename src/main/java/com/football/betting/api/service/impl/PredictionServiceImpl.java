@@ -1,16 +1,15 @@
 package com.football.betting.api.service.impl;
 
-import com.football.betting.api.io.entity.BetEntity;
-import com.football.betting.api.io.entity.PredictionEntity;
 import com.football.betting.api.io.repository.PredictionRepository;
 import com.football.betting.api.service.PredictionService;
-import com.football.betting.api.shared.dto.BetDto;
+import com.football.betting.api.shared.dto.GameDto;
 import com.football.betting.api.shared.dto.PredictionDto;
-import org.springframework.beans.BeanUtils;
+import com.petermarshall.shared.DateHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -20,11 +19,23 @@ public class PredictionServiceImpl implements PredictionService {
 
     @Override
     public List<PredictionDto> getFuturePredictions() {
-        List<PredictionEntity> futurePreds = predictionRepository.findAllFuture();
+        List<Object[]> futurePreds = predictionRepository.findAllFuture(DateHelper.getSqlDate(new Date()));
         ArrayList<PredictionDto> toReturn = new ArrayList<>();
-        for (PredictionEntity pEnt: futurePreds) {
+        for (Object[] predObj: futurePreds) {
             PredictionDto pDto = new PredictionDto();
-            BeanUtils.copyProperties(pEnt, pDto);
+            pDto.setHomePred((double) predObj[0]);
+            pDto.setDrawPred((double) predObj[1]);
+            pDto.setAwayPred((double) predObj[2]);
+            pDto.setHomeOdds((double) predObj[3]);
+            pDto.setDrawOdds((double) predObj[4]);
+            pDto.setAwayOdds((double) predObj[5]);
+            pDto.setOddsFrom((String) predObj[6]);
+            pDto.setPredictionUsesLineups((boolean) predObj[7]);
+            GameDto gameDto = new GameDto();
+            gameDto.setKickOff(DateHelper.createDateFromSQL((String) predObj[8]));
+            gameDto.setHomeTeam((String) predObj[9]);
+            gameDto.setAwayTeam((String) predObj[10]);
+            pDto.setGame(gameDto);
             toReturn.add(pDto);
         }
         return toReturn;

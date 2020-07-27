@@ -9,7 +9,7 @@ public class GameEntity {
     private static final long serialVersionUID = 1224918294727812391L;
 
     @Id
-    private long id;
+    private int _id;
 
     @Column
     private String homeTeam;
@@ -22,12 +22,12 @@ public class GameEntity {
     @Column
     private String date;
 
-    public long getId() {
-        return id;
+    public int getId() {
+        return _id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId(int id) {
+        this._id = id;
     }
 
     public String getHomeTeam() {
