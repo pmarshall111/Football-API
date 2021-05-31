@@ -1,4 +1,4 @@
-package com.football.betting.api.io.entity;
+package com.football.betting.api.datasource.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;

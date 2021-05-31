@@ -1,5 +1,1 @@
-- add in queries
-- add in db tables dependency.
-- add id to prediction and bet table in sql and in football project table inits
-- ensure that entities are created properly from the db - testing
-- after units tests are done, create RestAssured project to test properly
+Add

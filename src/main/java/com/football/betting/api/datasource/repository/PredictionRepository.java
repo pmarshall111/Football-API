@@ -1,6 +1,6 @@
-package com.football.betting.api.io.repository;
+package com.football.betting.api.datasource.repository;
 
-import com.football.betting.api.io.entity.PredictionEntity;
+import com.football.betting.api.datasource.entity.PredictionEntity;
 import dbTables.MatchTable;
 import dbTables.PredictionTable;
 import dbTables.TeamTable;

@@ -23,24 +23,18 @@ public class BetController {
 
     @GetMapping(path="/historic")
     public List<BetRest> getHistoricBets() {
-        ArrayList<BetRest> returnObj = new ArrayList<>();
         List<BetDto> betsDto = betService.getHistoricBets();
-        for (BetDto bDto: betsDto) {
-            BetRest bRest = new BetRest();
-            BeanUtils.copyProperties(bDto, bRest);
-            GameRest gRest = new GameRest();
-            BeanUtils.copyProperties(bDto.getGame(), gRest);
-            bRest.setGame(gRest);
-            bRest.setOdds(new HomeDrawAwayRest(bDto.getHomeOdds(), bDto.getDrawOdds(), bDto.getAwayOdds()));
-            returnObj.add(bRest);
-        }
-        return returnObj;
+        return convertDtoToResponse(betsDto);
     }
 
     @GetMapping(path="/future")
     public List<BetRest> getFutureBets() {
-        ArrayList<BetRest> returnObj = new ArrayList<>();
         List<BetDto> betsDto = betService.getFutureBets();
+        return convertDtoToResponse(betsDto);
+    }
+
+    private List<BetRest> convertDtoToResponse(List<BetDto> betsDto) {
+        ArrayList<BetRest> returnObj = new ArrayList<>();
         for (BetDto bDto: betsDto) {
             BetRest bRest = new BetRest();
             BeanUtils.copyProperties(bDto, bRest);

@@ -1,10 +1,10 @@
 package com.football.betting.api.service.impl;
 
-import com.football.betting.api.io.repository.PredictionRepository;
+import com.football.betting.api.datasource.repository.PredictionRepository;
+import com.football.betting.api.service.DateHelper;
 import com.football.betting.api.service.PredictionService;
 import com.football.betting.api.shared.dto.GameDto;
 import com.football.betting.api.shared.dto.PredictionDto;
-import com.petermarshall.shared.DateHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
