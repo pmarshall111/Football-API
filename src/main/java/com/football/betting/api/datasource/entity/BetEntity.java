@@ -3,13 +3,10 @@ package com.football.betting.api.datasource.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity(name="Bet")
+@Entity(name="bet")
 public class BetEntity implements Serializable {
 
     private static final long serialVersionUID = 29671229032852283L;
-
-    @Id
-    private int _id;
 
     @Column
     private double stake;
@@ -17,16 +14,16 @@ public class BetEntity implements Serializable {
     @Column
     private double odds;
 
+    @Column
+    private int resultBetOn;
+
     @ManyToOne
+    @JoinColumn(name="match_id", insertable = false, updatable = false)
     private GameEntity game;
 
-    public int getId() {
-        return _id;
-    }
-
-    public void setId(int id) {
-        this._id = id;
-    }
+    @Column
+    @Id
+    private int match_id;
 
     public double getStake() {
         return stake;
@@ -50,5 +47,21 @@ public class BetEntity implements Serializable {
 
     public void setGame(GameEntity game) {
         this.game = game;
+    }
+
+    public int getResultBetOn() {
+        return resultBetOn;
+    }
+
+    public void setResultBetOn(int resultBetOn) {
+        this.resultBetOn = resultBetOn;
+    }
+
+    public int getMatch_id() {
+        return match_id;
+    }
+
+    public void setMatch_id(int match_id) {
+        this.match_id = match_id;
     }
 }

@@ -1,17 +1,41 @@
 package com.football.betting.api.datasource.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 
+class PredictionEntityId implements Serializable {
+    private static final long serialVersionUID = 288126372821983921L;
+
+    private int match_id;
+    private boolean withLineups;
+
+    public PredictionEntityId(int match_id, boolean withLineups) {
+        this.match_id = match_id;
+        this.withLineups = withLineups;
+    }
+
+    public int getMatch_id() {
+        return match_id;
+    }
+
+    public void setMatch_id(int match_id) {
+        this.match_id = match_id;
+    }
+
+    public boolean isWithLineups() {
+        return withLineups;
+    }
+
+    public void setWithLineups(boolean withLineups) {
+        this.withLineups = withLineups;
+    }
+}
+
 @Entity(name = "prediction")
+@IdClass(PredictionEntityId.class)
 public class PredictionEntity implements Serializable {
     private static final long serialVersionUID = 2881263728946359121L;
 
-    @Id
-    private int id;
     @Column
     private double homePred;
     @Column
@@ -24,16 +48,18 @@ public class PredictionEntity implements Serializable {
     private double drawOdds;
     @Column
     private double awayOdds;
-    @Column
+    @Column(columnDefinition = "text")
     private String bookie;
     @Column
+    @Id
     private boolean withLineups;
     @ManyToOne
+    @JoinColumn(name="match_id", insertable = false, updatable = false)
     private GameEntity game;
 
-    public int getId() {
-        return id;
-    }
+    @Column
+    @Id
+    private int match_id;
 
     public double getHomePred() {
         return homePred;
@@ -105,5 +131,13 @@ public class PredictionEntity implements Serializable {
 
     public void setGame(GameEntity game) {
         this.game = game;
+    }
+
+    public int getMatch_id() {
+        return match_id;
+    }
+
+    public void setMatch_id(int match_id) {
+        this.match_id = match_id;
     }
 }

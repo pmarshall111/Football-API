@@ -22,7 +22,9 @@ public interface BetRepository extends CrudRepository<BetEntity, Integer> {
             MatchTable.TABLE_NAME + "." + MatchTable.COL_AWAY_WIN_ODDS + ", " +
             MatchTable.TABLE_NAME + "." + MatchTable.COL_DATE + ", " +
             "homeTeam." + TeamTable.COL_TEAM_NAME + " AS homeTeamName, " +
-            "awayTeam." + TeamTable.COL_TEAM_NAME + " AS awayTeamName " +
+            "awayTeam." + TeamTable.COL_TEAM_NAME + " AS awayTeamName, " +
+            MatchTable.TABLE_NAME + "." + MatchTable.COL_HOME_SCORE + ", " +
+            MatchTable.TABLE_NAME + "." + MatchTable.COL_AWAY_SCORE +
             " FROM " + BetTable.TABLE_NAME +
             " INNER JOIN " + MatchTable.TABLE_NAME + " ON " + BetTable.COL_MATCH_ID + " = " + MatchTable.TABLE_NAME + "._id" +
             " INNER JOIN " + TeamTable.TABLE_NAME + " AS homeTeam ON " + MatchTable.COL_HOMETEAM_ID + " = homeTeam._id" +
@@ -38,7 +40,9 @@ public interface BetRepository extends CrudRepository<BetEntity, Integer> {
             MatchTable.TABLE_NAME + "." + MatchTable.COL_AWAY_WIN_ODDS + ", " +
             MatchTable.TABLE_NAME + "." + MatchTable.COL_DATE + ", " +
             "homeTeam." + TeamTable.COL_TEAM_NAME + " AS homeTeamName, " +
-            "awayTeam." + TeamTable.COL_TEAM_NAME + " AS awayTeamName " +
+            "awayTeam." + TeamTable.COL_TEAM_NAME + " AS awayTeamName, " +
+            MatchTable.TABLE_NAME + "." + MatchTable.COL_HOME_SCORE + ", " +
+            MatchTable.TABLE_NAME + "." + MatchTable.COL_AWAY_SCORE +
             " FROM " + BetTable.TABLE_NAME +
             " INNER JOIN " + MatchTable.TABLE_NAME + " ON " + BetTable.COL_MATCH_ID + " = " + MatchTable.TABLE_NAME + "._id" +
             " INNER JOIN " + TeamTable.TABLE_NAME + " AS homeTeam ON " + MatchTable.COL_HOMETEAM_ID + " = homeTeam._id" +

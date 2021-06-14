@@ -1,8 +1,8 @@
 package com.football.betting.api.datasource.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
 
 @Entity(name="game")
 public class GameEntity {
@@ -11,15 +11,17 @@ public class GameEntity {
     @Id
     private int _id;
 
-    @Column
-    private String homeTeam;
-    @Column
-    private String awayTeam;
+    @ManyToOne
+    @JoinColumn(name="homeTeam_id")
+    private TeamEntity homeTeam;
+    @ManyToOne
+    @JoinColumn(name="awayTeam_id")
+    private TeamEntity awayTeam;
     @Column
     private int homeScore;
     @Column
     private int awayScore;
-    @Column
+    @Column(columnDefinition = "text")
     private String date;
 
     public int getId() {
@@ -31,18 +33,18 @@ public class GameEntity {
     }
 
     public String getHomeTeam() {
-        return homeTeam;
+        return homeTeam.getName();
     }
 
-    public void setHomeTeam(String homeTeam) {
+    public void setHomeTeam(TeamEntity homeTeam) {
         this.homeTeam = homeTeam;
     }
 
     public String getAwayTeam() {
-        return awayTeam;
+        return awayTeam.getName();
     }
 
-    public void setAwayTeam(String awayTeam) {
+    public void setAwayTeam(TeamEntity awayTeam) {
         this.awayTeam = awayTeam;
     }
 
@@ -68,6 +70,10 @@ public class GameEntity {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getLeague() {
+        return this.homeTeam.getLeague().getName();
     }
 }
 

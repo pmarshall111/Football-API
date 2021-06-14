@@ -53,6 +53,8 @@ public class BetServiceImpl implements BetService {
             gameDto.setKickOff(DateHelper.createDateFromSQL((String) betObj[6]));
             gameDto.setHomeTeam((String) betObj[7]);
             gameDto.setAwayTeam((String) betObj[8]);
+            gameDto.setHomeScore((int) betObj[9]);
+            gameDto.setAwayScore((int) betObj[10]);
             bDto.setGame(gameDto);
 
             toReturn.add(bDto);
