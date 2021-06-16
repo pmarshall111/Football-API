@@ -1,18 +1,30 @@
-package com.football.betting.api.shared.dto;
+package com.football.betting.api.ui.model.response;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class GameDto implements Serializable {
-    private static final long serialVersionUID = 90213898901298570L;
+public class GameResponse {
     private String homeTeam;
     private String awayTeam;
     private int homeScore;
     private int awayScore;
     private Date kickOff;
+    private PredictionResponse prediction;
+    private BetResponse bet;
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
+    public PredictionResponse getPrediction() {
+        return prediction;
+    }
+
+    public void setPrediction(PredictionResponse prediction) {
+        this.prediction = prediction;
+    }
+
+    public BetResponse getBet() {
+        return bet;
+    }
+
+    public void setBet(BetResponse bet) {
+        this.bet = bet;
     }
 
     public String getHomeTeam() {

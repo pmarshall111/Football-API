@@ -1,18 +1,16 @@
 package com.football.betting.api.datasource.entity;
 
+import com.football.betting.api.shared.DateHelper;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 class PredictionEntityId implements Serializable {
     private static final long serialVersionUID = 288126372821983921L;
 
     private int match_id;
     private boolean withLineups;
-
-    public PredictionEntityId(int match_id, boolean withLineups) {
-        this.match_id = match_id;
-        this.withLineups = withLineups;
-    }
 
     public int getMatch_id() {
         return match_id;
@@ -36,6 +34,8 @@ class PredictionEntityId implements Serializable {
 public class PredictionEntity implements Serializable {
     private static final long serialVersionUID = 2881263728946359121L;
 
+    @Column(columnDefinition = "text")
+    private String date;
     @Column
     private double homePred;
     @Column
@@ -139,5 +139,13 @@ public class PredictionEntity implements Serializable {
 
     public void setMatch_id(int match_id) {
         this.match_id = match_id;
+    }
+
+    public Date getDate() {
+        return DateHelper.createDateFromSQL(date);
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

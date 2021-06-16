@@ -1,8 +1,11 @@
 package com.football.betting.api.datasource.entity;
 
-import org.hibernate.annotations.Type;
+import com.football.betting.api.shared.DateHelper;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Entity(name="game")
 public class GameEntity {
@@ -23,6 +26,13 @@ public class GameEntity {
     private int awayScore;
     @Column(columnDefinition = "text")
     private String date;
+
+    @OneToMany(mappedBy = "match_id")
+    private List<PredictionEntity> predictions;
+
+    @OneToOne
+    @JoinColumn(name="_id")
+    private BetEntity bet;
 
     public int getId() {
         return _id;
@@ -64,8 +74,8 @@ public class GameEntity {
         this.awayScore = awayScore;
     }
 
-    public String getDate() {
-        return date;
+    public Date getDate() {
+        return DateHelper.createDateFromSQL(date);
     }
 
     public void setDate(String date) {
@@ -74,6 +84,22 @@ public class GameEntity {
 
     public String getLeague() {
         return this.homeTeam.getLeague().getName();
+    }
+
+    public ArrayList<PredictionEntity> getPredictions() {
+        return new ArrayList<>(predictions);
+    }
+
+    public void setPredictions(List<PredictionEntity> predictions) {
+        this.predictions = predictions;
+    }
+
+    public BetEntity getBet() {
+        return bet;
+    }
+
+    public void setBet(BetEntity bet) {
+        this.bet = bet;
     }
 }
 

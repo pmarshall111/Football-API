@@ -1,11 +1,11 @@
 package com.football.betting.api.ui.model.response;
 
-public class HomeDrawAwayRest {
+public class HomeDrawAway {
     private double home;
     private double draw;
     private double away;
 
-    public HomeDrawAwayRest(double home, double draw, double away) {
+    public HomeDrawAway(double home, double draw, double away) {
         this.home = home;
         this.draw = draw;
         this.away = away;

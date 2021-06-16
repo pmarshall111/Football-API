@@ -1,4 +1,4 @@
-package com.football.betting.api.service;
+package com.football.betting.api.shared;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
