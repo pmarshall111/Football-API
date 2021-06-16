@@ -17,7 +17,11 @@ public class PredictionController {
 
     @GetMapping
     public List<GameResponse> getFuturePredictions() {
-        return predictionService.getFuturePredictions();
+        List<GameResponse> futurePredictions = predictionService.getFuturePredictions();
+        futurePredictions.sort((g1, g2) -> {
+            return g1.getKickOff().compareTo(g2.getKickOff());
+        });
+        return futurePredictions;
     }
 
 }
