@@ -51,6 +51,7 @@ public class BetService {
                 gameResp.setAwayTeam(game.getAwayTeam());
                 gameResp.setKickOff(game.getDate());
                 gameResp.setBet(betResp);
+                gameResp.setLeague(game.getLeague());
 
                 historicGamesWithBets.add(gameResp);
             }

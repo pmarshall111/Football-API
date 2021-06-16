@@ -39,6 +39,7 @@ public class PredictionService {
                 gameResp.setHomeTeam(game.getHomeTeam());
                 gameResp.setAwayTeam(game.getAwayTeam());
                 gameResp.setKickOff(game.getDate());
+                gameResp.setLeague(game.getLeague());
 
                 BetEntity bet = game.getBet();
                 if (bet != null) {

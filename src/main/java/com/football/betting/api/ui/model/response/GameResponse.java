@@ -10,6 +10,7 @@ public class GameResponse {
     private Date kickOff;
     private PredictionResponse prediction;
     private BetResponse bet;
+    private String league;
 
     public PredictionResponse getPrediction() {
         return prediction;
@@ -65,5 +66,13 @@ public class GameResponse {
 
     public void setKickOff(Date kickOff) {
         this.kickOff = kickOff;
+    }
+
+    public String getLeague() {
+        return league;
+    }
+
+    public void setLeague(String league) {
+        this.league = league;
     }
 }
