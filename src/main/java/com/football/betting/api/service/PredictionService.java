@@ -25,6 +25,9 @@ public class PredictionService {
     public List<GameResponse> getFuturePredictions() {
         Date twoWeeksAhead = DateHelper.addXDaysToDate(new Date(), 14);
         List<GameEntity> futureGames =  gameRepository.findAllByDateGreaterThanAndDateLessThan(DateHelper.getSqlDate(new Date()), DateHelper.getSqlDate(twoWeeksAhead));
+//        List<GameEntity> futureGames =  gameRepository.findAllByDateGreaterThanAndDateLessThan(
+//                DateHelper.getSqlDate(DateHelper.createDateyyyyMMdd("2021","05","01")),
+//                DateHelper.getSqlDate(DateHelper.createDateyyyyMMdd("2021","05","30")));
 
         ArrayList<GameResponse> futureGamesWithPredictions = new ArrayList<>();
 

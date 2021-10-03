@@ -1,6 +1,4 @@
-src/main/resources/application.properties
 out
-src/main/resources
 
 HELP.md
 target/

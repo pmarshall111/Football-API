@@ -47,8 +47,8 @@ public class BetService {
 
                 gameResp.setHomeTeam(game.getHomeTeam());
                 gameResp.setAwayTeam(game.getAwayTeam());
-                gameResp.setHomeTeam(game.getHomeTeam());
-                gameResp.setAwayTeam(game.getAwayTeam());
+                gameResp.setHomeScore(game.getHomeScore());
+                gameResp.setAwayScore(game.getAwayScore());
                 gameResp.setKickOff(game.getDate());
                 gameResp.setBet(betResp);
                 gameResp.setLeague(game.getLeague());
