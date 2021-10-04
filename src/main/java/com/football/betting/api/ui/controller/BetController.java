@@ -26,4 +26,8 @@ public class BetController {
         return historicBets;
     }
 
+    @GetMapping(value = "/test")
+    public String sayHi() {
+        return "hi";
+    }
 }
