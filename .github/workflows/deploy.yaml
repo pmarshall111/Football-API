@@ -23,5 +23,5 @@ jobs:
       - name: Deploy with rsync
         run: rsync -avP ./target/api-0.0.1-SNAPSHOT.war ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/lib/tomcat9/webapps/football.war
 
-      - name: Reload Tomcat server
-        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} systemctl reload tomcat9
+      - name: Restart Tomcat server
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} sudo systemctl restart tomcat9
