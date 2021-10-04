@@ -24,4 +24,8 @@ public class PredictionController {
         return futurePredictions;
     }
 
+    @GetMapping(value = "/test")
+    public String sayHi() {
+        return "hi";
+    }
 }
