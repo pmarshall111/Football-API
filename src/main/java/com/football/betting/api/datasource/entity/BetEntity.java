@@ -17,6 +17,9 @@ public class BetEntity implements Serializable {
     @Column
     private int resultBetOn;
 
+    @Column
+    private boolean isLayBet;
+
     @ManyToOne
     @JoinColumn(name="match_id", insertable = false, updatable = false)
     private GameEntity game;
@@ -63,5 +66,13 @@ public class BetEntity implements Serializable {
 
     public void setMatch_id(int match_id) {
         this.match_id = match_id;
+    }
+
+    public boolean isLayBet() {
+        return isLayBet;
+    }
+
+    public void setLayBet(boolean layBet) {
+        isLayBet = layBet;
     }
 }

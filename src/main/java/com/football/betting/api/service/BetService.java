@@ -34,6 +34,8 @@ public class BetService {
                 betResp.setResultBetOn(bet.getResultBetOn());
                 betResp.setStake(bet.getStake());
                 betResp.setOdds(bet.getOdds());
+                betResp.setLayBet(bet.isLayBet());
+                betResp.setLiability(bet.isLayBet() ? bet.getStake() * bet.getOdds() : 0);
 
                 PredictionEntity predictionToUse = PredictionHelper.getBestPrediction(new ArrayList<>(bet.getGame().getPredictions()));
                 if (predictionToUse != null) {

@@ -1,12 +1,11 @@
 package com.football.betting.api.ui.model.response;
 
-import com.football.betting.api.datasource.entity.GameEntity;
-import com.football.betting.api.datasource.entity.PredictionEntity;
-
 public class BetResponse {
     private int resultBetOn;
     private double stake;
     private double odds;
+    private boolean isLayBet;
+    private double liability;
 
     public int getResultBetOn() {
         return resultBetOn;
@@ -30,5 +29,21 @@ public class BetResponse {
 
     public void setOdds(double odds) {
         this.odds = odds;
+    }
+
+    public boolean isLayBet() {
+        return isLayBet;
+    }
+
+    public void setLayBet(boolean layBet) {
+        isLayBet = layBet;
+    }
+
+    public double getLiability() {
+        return liability;
+    }
+
+    public void setLiability(double liability) {
+        this.liability = liability;
     }
 }

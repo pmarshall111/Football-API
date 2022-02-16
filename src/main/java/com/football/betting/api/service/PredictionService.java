@@ -26,8 +26,8 @@ public class PredictionService {
         Date twoWeeksAhead = DateHelper.addXDaysToDate(new Date(), 14);
         List<GameEntity> futureGames =  gameRepository.findAllByDateGreaterThanAndDateLessThan(DateHelper.getSqlDate(new Date()), DateHelper.getSqlDate(twoWeeksAhead));
 //        List<GameEntity> futureGames =  gameRepository.findAllByDateGreaterThanAndDateLessThan(
-//                DateHelper.getSqlDate(DateHelper.createDateyyyyMMdd("2021","05","01")),
-//                DateHelper.getSqlDate(DateHelper.createDateyyyyMMdd("2021","05","30")));
+//                DateHelper.getSqlDate(DateHelper.createDateyyyyMMdd("2021","12","04")),
+//                DateHelper.getSqlDate(DateHelper.createDateyyyyMMdd("2021","12","06")));
 
         ArrayList<GameResponse> futureGamesWithPredictions = new ArrayList<>();
 
@@ -50,6 +50,8 @@ public class PredictionService {
                     betResp.setResultBetOn(bet.getResultBetOn());
                     betResp.setStake(bet.getStake());
                     betResp.setOdds(bet.getOdds());
+                    betResp.setLayBet(bet.isLayBet());
+                    betResp.setLiability(bet.isLayBet() ? bet.getStake() * bet.getOdds() : 0);
                     gameResp.setBet(betResp);
                 }
                 futureGamesWithPredictions.add(gameResp);

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @RestController
@@ -20,9 +21,7 @@ public class BetController {
     @GetMapping
     public List<GameResponse> getHistoricBets() {
         List<GameResponse> historicBets = betService.getHistoricBets();
-        historicBets.sort((g1, g2) -> {
-            return g1.getKickOff().compareTo(g2.getKickOff());
-        });
+        historicBets.sort(Comparator.comparing(GameResponse::getKickOff));
         return historicBets;
     }
 }
