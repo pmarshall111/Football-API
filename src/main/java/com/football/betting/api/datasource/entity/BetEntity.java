@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity(name="bet")
+@IdClass(BetEntity.class)
 public class BetEntity implements Serializable {
 
     private static final long serialVersionUID = 29671229032852283L;
@@ -18,6 +19,7 @@ public class BetEntity implements Serializable {
     private int resultBetOn;
 
     @Column
+    @Id
     private boolean isLayBet;
 
     @ManyToOne

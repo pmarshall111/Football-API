@@ -30,9 +30,9 @@ public class GameEntity {
     @OneToMany(mappedBy = "match_id")
     private List<PredictionEntity> predictions;
 
-    @OneToOne
-    @JoinColumn(name="_id")
-    private BetEntity bet;
+    @OneToMany
+    @JoinColumn(name="match_id")
+    private List<BetEntity> bet;
 
     public int getId() {
         return _id;
@@ -94,11 +94,11 @@ public class GameEntity {
         this.predictions = predictions;
     }
 
-    public BetEntity getBet() {
+    public List<BetEntity> getBet() {
         return bet;
     }
 
-    public void setBet(BetEntity bet) {
+    public void setBet(List<BetEntity> bet) {
         this.bet = bet;
     }
 }

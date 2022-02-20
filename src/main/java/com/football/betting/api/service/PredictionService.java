@@ -44,8 +44,9 @@ public class PredictionService {
                 gameResp.setKickOff(game.getDate());
                 gameResp.setLeague(game.getLeague());
 
-                BetEntity bet = game.getBet();
-                if (bet != null) {
+                List<BetEntity> bets = game.getBet();
+                if (bets != null && bets.size() > 0) {
+                    BetEntity bet = bets.get(0);
                     BetResponse betResp = new BetResponse();
                     betResp.setResultBetOn(bet.getResultBetOn());
                     betResp.setStake(bet.getStake());
