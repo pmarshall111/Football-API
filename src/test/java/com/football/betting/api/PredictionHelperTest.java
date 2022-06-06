@@ -2,7 +2,6 @@ package com.football.betting.api;
 
 import com.football.betting.api.datasource.entity.PredictionEntity;
 import com.football.betting.api.shared.DateHelper;
-import com.football.betting.api.service.BetService;
 import com.football.betting.api.shared.PredictionHelper;
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +29,7 @@ public class PredictionHelperTest {
         preds.add(withLineups);
 
         PredictionEntity bestPred = PredictionHelper.getBestPrediction(preds);
-        assertEquals(DateHelper.createDateFromSQL(dateToCheckFor), bestPred.getDate()); //getDate method calls this method.
+        assertEquals(DateHelper.createDateFromSQL(dateToCheckFor), bestPred.getDate());
         assertTrue(bestPred.isWithLineups());
     }
 
@@ -51,6 +50,6 @@ public class PredictionHelperTest {
         preds.add(latest);
 
         PredictionEntity bestPred = PredictionHelper.getBestPrediction(preds);
-        assertEquals(DateHelper.createDateFromSQL(dateToCheckFor), bestPred.getDate()); //getDate method calls this method.
+        assertEquals(DateHelper.createDateFromSQL(dateToCheckFor), bestPred.getDate());
     }
 }
